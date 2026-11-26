@@ -1,0 +1,87 @@
+# Every QC cut-off lives here. "provisional: true" means the value comes from the build plan
+# (WGS_Pipeline_Build_Plan v1.1, section 5) and will be confirmed or changed in validation (V1-V6).
+version: "2026-10-29-draft1"
+
+00_input:
+  sample_id_regex: '^[A-Za-z0-9_-]+$'     # NTFS + tool-safe names
+  min_reads: 100000                        # below this the files are treated as empty/truncated
+  provisional: true
+
+01_read_qc:
+  fastp:
+    length_required: 50
+    cut_right_window_size: 4
+    cut_right_mean_quality: 20
+  raw_yield_fail_gb: 0.5        # minimum usable input
+  raw_yield_target_gb: 1.0      # WARN below target (plan target 1-2 Gb)
+  q30_after_pass_pct: 80        # Q30 bases after trimming; FAIL below
+  reads_kept_warn_pct: 80       # % reads surviving trimming; WARN below (added, not in plan v1.1)
+  provisional: true
+
+02_species:
+  sylph_min_ani: 95               # an organism counts as present only at ANI >= 95% (plan v1.1)
+  other_min_abundance_pct: 1      # non-MTBC organisms reported at >= 1% (added; not in plan v1.1)
+  kraken2_mtbc_warn_pct: 80       # CHECK if < 80% of reads classify as MTBC (added; screen only)
+  provisional: true
+
+03_alignment:
+  mapped_fail_pct: 80             # reads mapped to H37Rv
+  mapped_warn_pct: 90
+  provisional: true
+
+04_coverage:
+  depth_fail_x: 20                # genome mean depth
+  depth_pass_x: 30
+  depth_target_x: 100             # below target: minority (10-50%) variants less reliable; reported, not a failure
+  breadth10_pass_pct: 95          # % genome at >= 10x
+  key_indeterminate_x: 10         # graded (WHO 1-2) position below this -> drug Indeterminate (applied in step 09)
+  key_minority_x: 50              # graded position below this -> low-level resistance not assessable
+  gene_dropout_pct: 95            # resistance gene with < 95% bases at >= 1x -> possible deletion (step 06 confirms)
+  provisional: true
+
+05_variants:
+  min_base_quality: 20
+  min_mapping_quality: 20         # mapping quality filter for all callers
+  min_af_pct: 10                  # resistance calls: allele frequency >= 10% (plan v1.1)
+  fixed_af_pct: 90                # >= 90% = fixed (present in essentially all bacteria)
+  min_alt_reads_per_strand: 5     # minority calls need >= 5 supporting reads on each strand
+  min_depth: 10                   # below this a site is not callable (matches the two-tier rule)
+  minority_caller_agreement: true # 10-90% calls need LoFreq AND freebayes
+  provisional: true
+
+06_deletions:
+  min_deletion_bp: 50             # smaller indels are handled by the variant callers (step 05)
+  max_query_gap_bp: 50            # two contig blocks on one contig with <= 50 bp between them = joined across a deletion
+  max_deletion_bp: 30000          # larger "gaps" are rearrangements/repeats, not gene deletions
+  min_mapq: 20                    # contig blocks must be uniquely placed
+  min_block_bp: 1000
+  max_depth_fraction: 0.1         # confirmed only if read depth across the gap <= 10% of genome mean
+  provisional: true
+
+08_lineage:
+  mixed_lineage_min_pct: 10       # a second main lineage at >= 10% of marker reads is flagged (step 10 decides)
+  provisional: true
+
+09_resistance:
+  min_af_pct: 10                  # same as 05_variants; minority calls below this are never used
+  indeterminate_depth_x: 10       # any grade 1-2 position of a drug below this -> Indeterminate (unless R detected)
+  minority_assessable_depth_x: 50 # grade 1-2 positions below this -> "low-level resistance not assessable" note
+  delete_rule_min_pct: 50         # confirmed deletion covering >= 50% of a gene -> WHO "<gene>_deletion" rule
+  provisional: true
+
+10_mixed_infection:
+  min_depth: 20                   # sites used for the mixture test
+  min_minor_af_pct: 10            # a site is heterozygous at 10-90% minor allele frequency
+  min_minor_reads: 5              # minor allele reads (total)
+  het_sites_mixed: 10             # >= 10 heterozygous sites outside the mask -> mixed infection (MixInfect-style; calibrate in V4)
+  cluster_bp: 100                 # sites within 100 bp of the previous one are counted once (mis-mapping clusters; added)
+  omega_min_minor_reads_per_strand: 5   # HaystackAnalytics OmegaTB rule, shown alongside for comparison
+  omega_min_mapq: 46                    # OmegaTB: MAPQ above 45
+  provisional: true
+
+R2_relatedness:
+  linked_max_snps: 5              # Walker et al. 2013: <= 5 SNPs consistent with recent transmission
+  unlinked_min_snps: 12           # >= 12 SNPs: recent transmission unlikely; 6-11 possible
+  mask_depth_x: 10                # positions below this are N in the consensus
+  min_samples_tree: 4
+  provisional: true

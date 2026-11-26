@@ -1,0 +1,13 @@
+# data lives on an external drive (symlinks) or is scratch
+/resources
+/raw
+/results
+/validation/data
+/work/
+/inputs/
+.nextflow*
+*.fastq.gz
+*.bam
+*.bai
+__pycache__/
+*.pyc

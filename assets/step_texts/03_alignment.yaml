@@ -1,0 +1,31 @@
+title_plain: "Lining reads up against the TB reference"
+title_tech: "Step 03 - Alignment to H37Rv (BWA-MEM, samtools)"
+
+what: >
+  Each cleaned read is placed at its matching position on a fully known TB genome (the reference
+  strain H37Rv), like fitting puzzle pieces onto the picture on the box.
+
+why: >
+  Only when every read is in its correct place can we compare this sample's DNA letter by letter with
+  the reference and find the changes that cause drug resistance. A low match rate is a warning sign
+  of contamination or a non-TB organism.
+
+result:
+  PASS: >
+    {mapped_pct}% of the reads matched the TB reference genome. This is as expected for a TB sample.
+  WARN: >
+    Only {mapped_pct}% of the reads matched the TB reference genome. The sample may contain DNA from
+    other organisms; results continue but are reviewed.
+  FAIL: >
+    Only {mapped_pct}% of the reads matched the TB reference genome. This is too low for a reliable
+    result.
+
+next:
+  PASS: "No action needed. The aligned reads go to coverage (step 04) and variant finding (step 05)."
+  WARN: "A bioinformatician checks step 02 for contamination before the report is released."
+  FAIL: "Review the species result (step 02); re-extract or re-sequence the sample."
+
+technical_method: >
+  BWA-MEM 0.7.19 against NC_000962.3 with read group set, samtools fixmate -m, coordinate sort and
+  samtools markdup (duplicates flagged, not removed). Mapping rate is primary mapped / primary
+  reads from samtools flagstat. The BAM and index are kept in data/.

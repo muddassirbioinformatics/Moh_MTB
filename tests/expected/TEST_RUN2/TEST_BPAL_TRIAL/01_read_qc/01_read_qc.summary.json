@@ -1,0 +1,131 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "01_read_qc",
+  "status": "WARN",
+  "pipeline_version": "0.1.0-dev",
+  "generated": "2026-10-29 14:13",
+  "thresholds_version": "2026-10-29-draft1",
+  "values": {
+    "raw_yield_gb": "0.72",
+    "q30_after_pct": "91.3",
+    "reads_kept_pct": "83.0",
+    "length_required": 50,
+    "cut_right_window_size": 4,
+    "cut_right_mean_quality": 20
+  },
+  "metrics": [
+    {
+      "name": "Raw yield",
+      "plain": "Amount of DNA sequence produced",
+      "value": 0.72,
+      "unit": "Gb",
+      "threshold": "FAIL < 0.5 Gb; CHECK < 1.0 Gb",
+      "status": "WARN",
+      "provisional": true
+    },
+    {
+      "name": "Q30 bases after trimming",
+      "plain": "Share of high-quality DNA letters",
+      "value": 91.26,
+      "unit": "%",
+      "threshold": ">= 80%",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Reads kept after trimming",
+      "plain": "Share of reads kept after cleaning",
+      "value": 82.96,
+      "unit": "%",
+      "threshold": "CHECK < 80%",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Raw reads",
+      "plain": "Raw reads",
+      "value": 4784168,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO"
+    },
+    {
+      "name": "Reads after trimming",
+      "plain": "Reads after trimming",
+      "value": 3969052,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO"
+    },
+    {
+      "name": "Mean read length R1 after",
+      "plain": "Mean read length R1 after",
+      "value": 129,
+      "unit": "bp",
+      "threshold": "reported only",
+      "status": "INFO"
+    },
+    {
+      "name": "Q30 bases before trimming",
+      "plain": "Q30 bases before trimming",
+      "value": 81.23,
+      "unit": "%",
+      "threshold": "reported only",
+      "status": "INFO"
+    },
+    {
+      "name": "Duplication rate",
+      "plain": "Duplication rate",
+      "value": 0.35,
+      "unit": "%",
+      "threshold": "reported only",
+      "status": "INFO"
+    },
+    {
+      "name": "Insert size peak",
+      "plain": "Insert size peak",
+      "value": 151,
+      "unit": "bp",
+      "threshold": "reported only",
+      "status": "INFO"
+    },
+    {
+      "name": "GC content after",
+      "plain": "GC content after",
+      "value": 65.13,
+      "unit": "%",
+      "threshold": "reported only",
+      "status": "INFO"
+    }
+  ],
+  "messages": [
+    "Reads removed: low quality 2,102; too many N 0; too short 790,480.",
+    "Adapter-trimmed reads: 903,697; adapter-trimmed bases: 25,798,777."
+  ],
+  "tools": [
+    {
+      "name": "fastp",
+      "version": "1.4.0",
+      "container": "quay.io/biocontainers/fastp:1.4.0--h43da1c4_0",
+      "command": "fastp -i ERR11773715_1.fastq.gz -I ERR11773715_2.fastq.gz -o TEST_BPAL_TRIAL_R1.trim.fastq.gz -O TEST_BPAL_TRIAL_R2.trim.fastq.gz --detect_adapter_for_pe --cut_right --cut_right_window_size 4 --cut_right_mean_quality 20 --length_required 50 --trim_poly_g -w 8 -j data/fastp.json -h data/fastp.html"
+    },
+    {
+      "name": "read_qc_summary.py",
+      "version": "0.1.0-dev",
+      "container": "mtb-report:1.1.0"
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/fastp.json"
+      },
+      {
+        "path": "data/fastp.html"
+      }
+    ]
+  }
+}

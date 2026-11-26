@@ -1,0 +1,35 @@
+title_plain: "Is this TB, and is anything else there?"
+title_tech: "Step 02 - Species identification (Mykrobe + Sylph) and contamination screen (Kraken2)"
+
+what: >
+  We confirm that the DNA really comes from the tuberculosis family of bacteria, identify which member
+  of the family it is, and look for DNA from any other organism in the sample.
+
+why: >
+  The resistance report only makes sense for TB. Some close relatives (for example M. bovis) are
+  naturally resistant to certain drugs, and DNA from other organisms can confuse later steps or point
+  to a contaminated sample or a second infection.
+
+result:
+  PASS: >
+    TB-family DNA was {mtbc_word} by two independent methods. Family member: {species}. No other
+    organism was found in significant amounts.
+  WARN: >
+    TB-family DNA was {mtbc_word} ({species}), but something needs review: other organisms found:
+    {others}. See the items marked CHECK below.
+  FAIL: >
+    TB-family DNA was {mtbc_word} in this sample. A TB drug-resistance report cannot be produced.
+
+next:
+  PASS: "No action needed. Analysis continues."
+  WARN: >
+    A bioinformatician reviews the other organisms (contamination or genuine second infection) before
+    the report is released. TB analysis continues.
+  FAIL: "Check the sample identity and culture; re-test if TB is still suspected."
+
+technical_method: >
+  Mykrobe 0.13 (panel 202309, GTDB r214-based species probes) gives the MTBC / sub-species call;
+  its resistance output is not used. Sylph profiles the trimmed reads against GTDB r226 (c200
+  database); an organism is counted only at adjusted ANI >= 95%. MTBC is confirmed when both
+  methods agree. Kraken2 (Standard-8, 2024-12-28) is reported as a contamination screen only,
+  because 8 GB-capped k-mer databases misclassify a share of reads.

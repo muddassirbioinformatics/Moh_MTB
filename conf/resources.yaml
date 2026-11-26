@@ -1,0 +1,43 @@
+# Frozen resources. A new version goes in a new folder; never edit a folder in place.
+# Paths are relative to resources/ (-> ~/mtbdata/MTB_DATA/resources). Checksums: resources/MANIFEST.sha256
+reference:
+  path: reference/H37Rv_NC_000962.3
+  source: NCBI nuccore NC_000962.3 (FASTA, GenBank gbwithparts, GFF3)
+  downloaded: 2026-10-29
+  notes: bwa 0.7.19 index, samtools 1.24 faidx/dict
+  derived: reference/H37Rv_NC_000962.3/derived/H37Rv.csq.gff3 (bin/build_csq_gff.py, 2026-10-29) -
+    Ensembl-style layout for bcftools csq; 3,906 CDS; tRNA/rRNA are not given csq consequences
+  mask: reference/H37Rv_NC_000962.3/derived/low_confidence_mask.bed - tbdb mask.bed (commit 400bec70),
+    chromosome renamed to NC_000962.3; 2,300 intervals, 311,910 bp (repeats, PE/PPE, low confidence)
+who_catalogue:
+  path: who_catalogue/2023_v2
+  source: github.com/GTB-tbsequencing/mutation-catalogue-2023 "Final Result Files" (WHO-UCN-TB-2023.6/.7)
+  downloaded: 2026-10-29
+  derived: who_catalogue/2023_v2/derived (bin/build_who_tables.py, 2026-10-29) - grading lookup, gene
+    LoF/deletion rules, resistance_regions.bed (65 genes), graded_positions.bed (grade 1-2)
+  scope: 15 drugs graded; PAS and pretomanid are NOT in the WHO 2023 catalogue
+kraken2:
+  path: kraken2/standard8_20241228
+  source: genome-idx.s3.amazonaws.com/kraken/k2_standard_08gb_20241228.tar.gz
+  downloaded: 2026-10-29
+  role: contamination screen only
+sylph:
+  path: sylph/gtdb_r226_c200_dbv1
+  source: faust.compbio.cs.cmu.edu/sylph-stuff/gtdb-r226-c200-dbv1.syldb
+  downloaded: 2026-10-29
+tbprofiler:
+  path: tbprofiler/6.7.0
+  source: tb-profiler 6.7.0 update_tbdb (github.com/jodyphelan/tbdb, branch tbdb, commit 400bec70, 2026-03-11)
+  downloaded: 2026-10-29
+  role: lineage barcode and cross-check only
+snpeff:
+  path: snpeff/H37Rv_NC_000962.3_snpeff5.4
+  source: built locally with snpEff 5.4 from reference/H37Rv_NC_000962.3/H37Rv.gbk
+  built: 2026-10-29
+  role: display annotation only
+mykrobe:
+  path: mykrobe/0.13.0
+  source: figshare file 42494211 (mykrobe.panel.tb.20230928.tar.gz), downloaded manually by the lab 2026-10-29
+  installed: 2026-10-29 via mykrobe DataDir.add_or_replace_species_data (CLI cannot install local files)
+  panel: species panel 202309 (GTDB r214-based)
+  role: species / MTBC sub-species ID only. Its resistance panel (WHO 2021-based) is NOT used.

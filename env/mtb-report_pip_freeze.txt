@@ -1,0 +1,16 @@
+chardet==7.7.0
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.68.0
+kiwisolver==1.5.1
+matplotlib==3.9.2
+numpy==2.5.4
+packaging==26.3
+pillow==13.0.0
+pyparsing==3.3.3
+pypdf==5.1.0
+python-dateutil==3.0.0
+PyYAML==6.0.2
+reportlab==4.2.5
+six==1.17.0
+tzdata==2026.6

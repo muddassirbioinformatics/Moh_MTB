@@ -1,0 +1,34 @@
+title_plain: "Checking for missing pieces of genes"
+title_tech: "Step 06 - Deletion confirmation (coverage drop-out + de novo assembly)"
+
+what: >
+  Sometimes a piece of a gene, or a whole gene, is missing from the bacterium's DNA. When step 04
+  sees a resistance gene with no reads, we rebuild the genome from scratch and check whether the
+  piece is really missing and exactly where the gap starts and ends.
+
+why: >
+  A missing gene can cause resistance just like a single-letter change (for example losing katG
+  causes isoniazid resistance). A gap in the reads can also be a technical artefact, so a second,
+  independent check is needed before reporting it.
+
+result:
+  PASS: >
+    No missing pieces were found in the resistance genes (genome rebuild run: {assembled}).
+  WARN: >
+    Missing pieces were found in resistance genes. Confirmed: {deleted}. Unconfirmed: {n_unconf}.
+    See the items marked CHECK below.
+  FAIL: "The deletion check did not complete for this sample."
+
+next:
+  PASS: "No action needed. Analysis continues."
+  WARN: >
+    Confirmed deletions are checked against the WHO rules in step 09. A bioinformatician reviews
+    any unconfirmed drop-out; the affected drugs are reported as Indeterminate until resolved.
+  FAIL: "Re-run the step; if it fails again, the bioinformatician investigates."
+
+technical_method: >
+  Triggered when a resistance gene has < 95% of bases at >= 1x (step 04) or with --always_assemble.
+  shovill 1.4.2 (SPAdes; reads subsampled to ~100x) assembles the trimmed reads; contigs are aligned
+  to H37Rv with minimap2 -cx asm5. A deletion of >= 50 bp is confirmed when a single contig spans it
+  (CIGAR D operation, or two blocks adjacent on the contig but separated on the reference).
+  Drop-out regions with no spanning contig are reported as unconfirmed.

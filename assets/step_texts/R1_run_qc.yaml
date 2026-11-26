@@ -1,0 +1,27 @@
+title_plain: "How did the whole sequencing run perform?"
+title_tech: "R1 - Run-level QC summary (all samples)"
+
+what: >
+  This page brings together every sample sequenced in the same run: whether its data passed the
+  quality checks, its drug-resistance category, and which drugs showed resistance.
+
+why: >
+  Looking at the run as a whole shows problems that affect several samples at once (for example a poor
+  sequencing run or contamination), and confirms which samples have a report ready for review.
+
+result:
+  PASS: "All {n} samples in this run produced a usable result."
+  WARN: >
+    {n_rep} of {n} samples produced a usable result; {n_fail} did not pass the quality checks (see the
+    table below).
+  FAIL: "The run summary could not be produced."
+
+next:
+  PASS: "Reports go to the reviewing scientist for sign-off."
+  WARN: "Samples that failed need a new sample or re-sequencing; the others go for review."
+  FAIL: "The bioinformatician investigates."
+
+technical_method: >
+  Collects the summary JSON of every step for every sample of the run. A sample that stopped early
+  (FAIL at step 00 or 01) has no clinical report. MultiQC 1.35 aggregates fastp, samtools, mosdepth
+  and Kraken2 outputs into multiqc.html.

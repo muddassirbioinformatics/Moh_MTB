@@ -1,0 +1,579 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "09_resistance",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "detected": "Rifampicin, Isoniazid, Ethambutol, Pyrazinamide, Levofloxacin, Moxifloxacin, Streptomycin",
+    "n_detected": 7,
+    "indeterminate": "Delamanid",
+    "n_not": 9,
+    "n_drugs": 17
+  },
+  "metrics": [
+    {
+      "name": "Drugs assessed",
+      "plain": "Drugs with a clear result",
+      "value": "16 of 17",
+      "unit": "",
+      "threshold": "all (otherwise Indeterminate)",
+      "status": "WARN",
+      "provisional": true
+    },
+    {
+      "name": "Agreement with TB-Profiler",
+      "plain": "Second-opinion software agrees",
+      "value": "1 drug(s) differ",
+      "unit": "",
+      "threshold": "no discordance (review otherwise)",
+      "status": "WARN",
+      "provisional": true
+    },
+    {
+      "name": "Epistasis rules applied",
+      "plain": "Cancelling mutations found",
+      "value": "none",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    }
+  ],
+  "messages": [
+    "katG_c.*150_*163delCGAGACGGGGATGA: gene-disrupting in Rv1907c, not in katG (Rv1908c); katG LoF rule not applied.",
+    "Grading: WHO 2023 catalogue (2nd edition), exact (position, ref, alt) match after bcftools normalisation, as instructed by WHO; grade 1 'Assoc w R' and grade 2 'Assoc w R - Interim' count as resistance. Grade 3 and changes not in the catalogue are listed but do not change the result.",
+    "Pretomanid is inferred only from the WHO DLM-PMD cross-resistance rule; PAS uses the tbdb literature list (lower evidence, not WHO-graded)."
+  ],
+  "tools": [
+    {
+      "name": "grade_resistance.py",
+      "version": "0.1.0-dev",
+      "container": "mtb-report:1.1.0",
+      "command": "WHO 2023 derived tables: who_variants.tsv, who_gene_rules.tsv, analysis_key_positions.bed, pas_tbdb.tsv"
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/drug_results.tsv"
+      },
+      {
+        "path": "data/evidence.tsv"
+      }
+    ]
+  },
+  "results": {
+    "title": "Result per drug",
+    "columns": [
+      "Drug",
+      "Resistance",
+      "Details"
+    ],
+    "badge_col": 1,
+    "widths_mm": [
+      38,
+      34,
+      108
+    ],
+    "rows": [
+      [
+        "Rifampicin (RIF)",
+        "DETECTED",
+        "rpoB_p.Ser450Leu (100%)"
+      ],
+      [
+        "Isoniazid (INH)",
+        "DETECTED",
+        "katG_p.Ser315Thr (100%)"
+      ],
+      [
+        "Ethambutol (EMB)",
+        "DETECTED",
+        "embB_p.Met306Ile (100%)"
+      ],
+      [
+        "Pyrazinamide (PZA)",
+        "DETECTED",
+        "pncA_p.Cys14Arg (100%)"
+      ],
+      [
+        "Levofloxacin (LFX)",
+        "DETECTED",
+        "gyrA_p.Asp94Gly (100%)"
+      ],
+      [
+        "Moxifloxacin (MFX)",
+        "DETECTED",
+        "gyrA_p.Asp94Gly (100%)"
+      ],
+      [
+        "Bedaquiline (BDQ)",
+        "NOT DETECTED",
+        "-"
+      ],
+      [
+        "Linezolid (LZD)",
+        "NOT DETECTED",
+        "-"
+      ],
+      [
+        "Clofazimine (CFZ)",
+        "NOT DETECTED",
+        "-"
+      ],
+      [
+        "Delamanid (DLM)",
+        "INDETERMINATE",
+        "key positions below 10x: Rv2983_LoF (8x), Rv2983_LoF (9x), Rv2983_LoF (9x), Rv2983_LoF (9x), Rv2983_LoF (8x); low-level resistance not assessable at 43 position(s) (10-50x)"
+      ],
+      [
+        "Amikacin (AMK)",
+        "NOT DETECTED",
+        "-"
+      ],
+      [
+        "Streptomycin (SM)",
+        "DETECTED",
+        "rrs_n.514A>C (100%)"
+      ],
+      [
+        "Ethionamide (ETO)",
+        "NOT DETECTED",
+        "-"
+      ],
+      [
+        "Para-aminosalicylic acid (PAS)",
+        "NOT DETECTED",
+        "-"
+      ],
+      [
+        "Pretomanid (PMD)",
+        "NOT DETECTED",
+        "-"
+      ],
+      [
+        "Kanamycin (KAN)",
+        "NOT DETECTED",
+        "-"
+      ],
+      [
+        "Capreomycin (CAP)",
+        "NOT DETECTED",
+        "-"
+      ]
+    ]
+  },
+  "tables": [
+    {
+      "title": "Resistance evidence (grade 1-2 matches)",
+      "columns": [
+        "Drug",
+        "Variant",
+        "WHO variant",
+        "Grade",
+        "AF",
+        "Call",
+        "Source"
+      ],
+      "rows": [
+        [
+          "RIF",
+          "rpoB_p.Ser450Leu",
+          "rpoB_p.Ser450Leu",
+          "1) Assoc w R",
+          "100.0%",
+          "fixed",
+          "WHO 2023 (coordinate match)"
+        ],
+        [
+          "INH",
+          "katG_p.Ser315Thr",
+          "katG_p.Ser315Thr",
+          "1) Assoc w R",
+          "100.0%",
+          "fixed",
+          "WHO 2023 (coordinate match)"
+        ],
+        [
+          "EMB",
+          "embB_p.Met306Ile",
+          "embB_p.Met306Ile",
+          "1) Assoc w R",
+          "100.0%",
+          "fixed",
+          "WHO 2023 (coordinate match)"
+        ],
+        [
+          "PZA",
+          "pncA_p.Cys14Arg",
+          "pncA_p.Cys14Arg",
+          "1) Assoc w R",
+          "100.0%",
+          "fixed",
+          "WHO 2023 (coordinate match)"
+        ],
+        [
+          "LFX",
+          "gyrA_p.Asp94Gly",
+          "gyrA_p.Asp94Gly",
+          "1) Assoc w R",
+          "100.0%",
+          "fixed",
+          "WHO 2023 (coordinate match)"
+        ],
+        [
+          "MFX",
+          "gyrA_p.Asp94Gly",
+          "gyrA_p.Asp94Gly",
+          "1) Assoc w R",
+          "100.0%",
+          "fixed",
+          "WHO 2023 (coordinate match)"
+        ],
+        [
+          "SM",
+          "rrs_n.514A>C",
+          "rrs_n.514A>C",
+          "1) Assoc w R",
+          "100.0%",
+          "fixed",
+          "WHO 2023 (coordinate match)"
+        ]
+      ],
+      "widths_mm": [
+        12,
+        34,
+        34,
+        30,
+        12,
+        16,
+        42
+      ]
+    },
+    {
+      "title": "Changes of uncertain significance / not in catalogue (do not change the result)",
+      "columns": [
+        "Drug",
+        "Variant",
+        "Category",
+        "AF",
+        "Call"
+      ],
+      "rows": [
+        [
+          "RIF",
+          "rpoC_p.Val483Gly",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "INH",
+          "katG_p.Pro141Ser",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "INH",
+          "katG_c.*150_*163delCGAGACGGGGATGA",
+          "Not in catalogue",
+          "67.8%",
+          "minority"
+        ],
+        [
+          "LFX",
+          "gyrB_c.-60_-59insG",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "MFX",
+          "gyrB_c.-60_-59insG",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "BDQ",
+          "Rv1979c_p.Arg409Gln",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "BDQ",
+          "mtrB_p.Met517Leu",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "CFZ",
+          "Rv1979c_p.Arg409Gln",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "DLM",
+          "ddn_c.*72delG",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "AMK",
+          "eis_c.-11G>A",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "AMK",
+          "whiB6_c.-117G>A",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "AMK",
+          "whiB6_c.-55T>C",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "AMK",
+          "whiB6_c.*1G>C",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "SM",
+          "gid_p.Leu79Ser",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "SM",
+          "gid_c.-2C>T",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "SM",
+          "gid_c.-26G>A",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "ETO",
+          "Rv0565c_p.Arg110His",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "ETO",
+          "ethA_p.Ala381Pro",
+          "3) Uncertain significance",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "ETO",
+          "Rv0565c_c.*24A>C",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "KAN",
+          "eis_c.-11G>A",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "KAN",
+          "whiB6_c.-117G>A",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "KAN",
+          "whiB6_c.-55T>C",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "KAN",
+          "whiB6_c.*1G>C",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "CAP",
+          "whiB6_c.-117G>A",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "CAP",
+          "whiB6_c.-55T>C",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ],
+        [
+          "CAP",
+          "whiB6_c.*1G>C",
+          "Not in catalogue",
+          "100.0%",
+          "fixed"
+        ]
+      ],
+      "widths_mm": [
+        14,
+        60,
+        56,
+        20,
+        30
+      ]
+    },
+    {
+      "title": "Cross-check against TB-Profiler (not used for the result)",
+      "columns": [
+        "Drug",
+        "This pipeline",
+        "TB-Profiler",
+        "Agree"
+      ],
+      "rows": [
+        [
+          "RIF",
+          "DETECTED",
+          "resistant",
+          "yes"
+        ],
+        [
+          "INH",
+          "DETECTED",
+          "resistant",
+          "yes"
+        ],
+        [
+          "EMB",
+          "DETECTED",
+          "resistant",
+          "yes"
+        ],
+        [
+          "PZA",
+          "DETECTED",
+          "resistant",
+          "yes"
+        ],
+        [
+          "LFX",
+          "DETECTED",
+          "resistant",
+          "yes"
+        ],
+        [
+          "MFX",
+          "DETECTED",
+          "resistant",
+          "yes"
+        ],
+        [
+          "BDQ",
+          "NOT DETECTED",
+          "no call",
+          "yes"
+        ],
+        [
+          "LZD",
+          "NOT DETECTED",
+          "no call",
+          "yes"
+        ],
+        [
+          "CFZ",
+          "NOT DETECTED",
+          "no call",
+          "yes"
+        ],
+        [
+          "DLM",
+          "INDETERMINATE",
+          "no call",
+          "n/a"
+        ],
+        [
+          "AMK",
+          "NOT DETECTED",
+          "no call",
+          "yes"
+        ],
+        [
+          "SM",
+          "DETECTED",
+          "resistant",
+          "yes"
+        ],
+        [
+          "ETO",
+          "NOT DETECTED",
+          "resistant",
+          "no"
+        ],
+        [
+          "PAS",
+          "NOT DETECTED",
+          "no call",
+          "yes"
+        ],
+        [
+          "PMD",
+          "NOT DETECTED",
+          "no call",
+          "yes"
+        ],
+        [
+          "KAN",
+          "NOT DETECTED",
+          "no call",
+          "yes"
+        ],
+        [
+          "CAP",
+          "NOT DETECTED",
+          "no call",
+          "yes"
+        ]
+      ],
+      "widths_mm": [
+        20,
+        60,
+        60,
+        40
+      ]
+    }
+  ],
+  "status": "WARN",
+  "generated": "2026-10-29 14:18",
+  "thresholds_version": "2026-10-29-draft1"
+}

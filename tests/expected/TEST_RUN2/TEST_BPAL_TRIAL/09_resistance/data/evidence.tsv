@@ -1,0 +1,8 @@
+drug	variant	who_variant	grade	af	call	source	pos	status
+RIF	rpoB_p.Ser450Leu	rpoB_p.Ser450Leu	1) Assoc w R	1.0000	fixed	WHO 2023 (coordinate match)	761155	used
+INH	katG_p.Ser315Thr	katG_p.Ser315Thr	1) Assoc w R	1.0000	fixed	WHO 2023 (coordinate match)	2155168	used
+EMB	embB_p.Met306Ile	embB_p.Met306Ile	1) Assoc w R	1.0000	fixed	WHO 2023 (coordinate match)	4247431	used
+PZA	pncA_p.Cys14Arg	pncA_p.Cys14Arg	1) Assoc w R	1.0000	fixed	WHO 2023 (coordinate match)	2289202	used
+LFX	gyrA_p.Asp94Gly	gyrA_p.Asp94Gly	1) Assoc w R	1.0000	fixed	WHO 2023 (coordinate match)	7582	used
+MFX	gyrA_p.Asp94Gly	gyrA_p.Asp94Gly	1) Assoc w R	1.0000	fixed	WHO 2023 (coordinate match)	7582	used
+SM	rrs_n.514A>C	rrs_n.514A>C	1) Assoc w R	1.0000	fixed	WHO 2023 (coordinate match)	1472359	used

@@ -1,0 +1,17 @@
+# Captured 2026-11-12 on the build machine
+## OS
+Ubuntu 22.04.5 LTS
+6.8.0-138-generic
+## CPU/RAM
+16
+Mem:              62           4          51           0           6          57
+## Docker
+Docker version 29.1.3, build 29.1.3-0ubuntu3~22.04.2
+## Java
+openjdk version "17.0.21" 2026-10-20
+## Nextflow
+      version 26.10.4 build 14435
+## Python (host, used only for docs/src and small scripts)
+Python 3.10.12
+## poppler/pdf tools
+pdfinfo version 22.02.0

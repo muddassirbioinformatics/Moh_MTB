@@ -1,0 +1,66 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "06_deletions",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "n_conf": 0,
+    "n_unconf": 0,
+    "assembled": "no",
+    "deleted": "none"
+  },
+  "metrics": [
+    {
+      "name": "Genes flagged by coverage (step 04)",
+      "plain": "Genes that looked like they might be missing",
+      "value": "none",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Assembly run",
+      "plain": "Extra check by rebuilding the genome",
+      "value": "not needed",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Confirmed deletions in resistance genes",
+      "plain": "Missing pieces of resistance genes (confirmed)",
+      "value": "none",
+      "unit": "",
+      "threshold": "reported finding",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Unconfirmed drop-outs",
+      "plain": "Possible missing pieces that could not be confirmed",
+      "value": "none",
+      "unit": "",
+      "threshold": "none",
+      "status": "PASS",
+      "provisional": true
+    }
+  ],
+  "messages": [
+    "No resistance gene showed coverage drop-out in step 04, so de novo assembly was not needed. Small insertions/deletions are detected by the variant callers in step 05."
+  ],
+  "tools": [],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/deletions.tsv"
+      }
+    ]
+  },
+  "status": "PASS",
+  "generated": "2026-10-29 14:16",
+  "thresholds_version": "2026-10-29-draft1"
+}

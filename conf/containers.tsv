@@ -1,0 +1,20 @@
+# tool	image   (pinned 2026-10-29; newest build >= 3 weeks old)
+fastp	quay.io/biocontainers/fastp:1.4.0--h43da1c4_0
+multiqc	quay.io/biocontainers/multiqc:1.35--pyhdfd78af_2
+bwa	quay.io/biocontainers/bwa:0.7.19--h577a1d6_1
+samtools	quay.io/biocontainers/samtools:1.24--h9dcdb79_1
+bcftools	quay.io/biocontainers/bcftools:1.24--h118bc1c_4
+mosdepth	quay.io/biocontainers/mosdepth:0.3.14--h87be163_2
+lofreq	quay.io/biocontainers/lofreq:2.1.5--py311h6385618_16
+freebayes	quay.io/biocontainers/freebayes:1.3.10--h3752d28_1
+mykrobe	quay.io/biocontainers/mykrobe:0.13.0--py311h22b1866_5
+sylph	quay.io/biocontainers/sylph:1.0.0--hb42e459_0
+kraken2	quay.io/biocontainers/kraken2:2.17.2--pl5321h3be2455_0
+tb-profiler	quay.io/biocontainers/tb-profiler:6.7.0--pyhdfd78af_0
+shovill	quay.io/biocontainers/shovill:1.4.2--hdfd78af_1
+snpeff	quay.io/biocontainers/snpeff:5.4
+minimap2	quay.io/biocontainers/minimap2:2.31--h118bc1c_0
+snp-dists	quay.io/biocontainers/snp-dists:1.2.0--h577a1d6_0
+iqtree	quay.io/biocontainers/iqtree:3.1.4--h8471819_0
+mtb-report	mtb-report:1.1.0   (local build, containers/mtb-report/Dockerfile; 1.1.0 adds pypdf)
+bwa_samtools	quay.io/biocontainers/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40:f45ad9036aa41bb10f875a330fa877d8869018a1-0   (bwa 0.7.19 + samtools 1.22.1)

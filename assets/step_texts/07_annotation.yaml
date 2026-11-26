@@ -1,0 +1,31 @@
+title_plain: "Working out what each change does to the gene"
+title_tech: "Step 07 - Consequence annotation (bcftools csq; SnpEff for display)"
+
+what: >
+  For each DNA change found in the resistance genes we work out what it does: whether it changes
+  one building block of the protein, does nothing, or breaks the gene entirely.
+
+why: >
+  The WHO list names resistance changes by their effect on the protein (for example rpoB S450L).
+  Some genes cause resistance whenever they are broken, whatever the exact change, so we must
+  recognise gene-breaking changes reliably.
+
+result:
+  PASS: >
+    All {n_used} change(s) in the resistance genes were described. {n_lof} of them break a gene.
+  WARN: >
+    Some changes could not be described automatically. See the items marked CHECK below.
+  FAIL: "Annotation did not complete for this sample."
+
+next:
+  PASS: "No action needed. The changes are checked against the WHO 2023 list (step 09)."
+  WARN: "A bioinformatician describes the remaining changes manually before release."
+  FAIL: "Re-run the step; if it fails again, the bioinformatician investigates."
+
+technical_method: >
+  bcftools csq with the bacterial genetic code (table 11) and a csq-format GFF derived from the
+  frozen NCBI annotation. Fixed calls are annotated haplotype-aware (-p a), so two changes in one
+  codon are read together; minority calls are annotated one at a time (-l), because they may sit on
+  different sub-populations. Loss-of-function = frameshift, stop gained or start lost. SnpEff 5.4
+  (local database from the same GenBank file) supplies HGVS c./p. names for display; rrs/rrl changes
+  are named n.<position>.

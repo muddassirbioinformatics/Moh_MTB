@@ -1,0 +1,18 @@
+code	drug	group	call	confidence	detail	evidence_source	tbprofiler	agree	uncertain
+RIF	Rifampicin	First-line	DETECTED	Assoc w R	rpoB_p.Ser450Leu (100%)	WHO2023	R	yes	rpoC_p.Val483Gly (100%, 3) Uncertain significance)
+INH	Isoniazid	First-line	DETECTED	Assoc w R	katG_p.Ser315Thr (100%)	WHO2023	R	yes	katG_p.Pro141Ser (100%, Not in catalogue); katG_c.*150_*163delCGAGACGGGGATGA (68%, Not in catalogue)
+EMB	Ethambutol	First-line	DETECTED	Assoc w R	embB_p.Met306Ile (100%)	WHO2023	R	yes	
+PZA	Pyrazinamide	First-line	DETECTED	Assoc w R	pncA_p.Cys14Arg (100%)	WHO2023	R	yes	
+LFX	Levofloxacin	Group A	DETECTED	Assoc w R	gyrA_p.Asp94Gly (100%)	WHO2023	R	yes	gyrB_c.-60_-59insG (100%, 3) Uncertain significance)
+MFX	Moxifloxacin	Group A	DETECTED	Assoc w R	gyrA_p.Asp94Gly (100%)	WHO2023	R	yes	gyrB_c.-60_-59insG (100%, 3) Uncertain significance)
+BDQ	Bedaquiline	Group A	NOT DETECTED		No resistance-associated change found	WHO2023	S	yes	Rv1979c_p.Arg409Gln (100%, 3) Uncertain significance); mtrB_p.Met517Leu (100%, 3) Uncertain significance)
+LZD	Linezolid	Group A	NOT DETECTED		No resistance-associated change found	WHO2023	S	yes	
+CFZ	Clofazimine	Group B	NOT DETECTED		No resistance-associated change found	WHO2023	S	yes	Rv1979c_p.Arg409Gln (100%, 3) Uncertain significance)
+DLM	Delamanid	Group C	INDETERMINATE		key positions below 10x: Rv2983_LoF (8x), Rv2983_LoF (9x), Rv2983_LoF (9x), Rv2983_LoF (9x), Rv2983_LoF (8x); low-level resistance not assessable at 43 position(s) (10-50x)	WHO2023	S	n/a	ddn_c.*72delG (100%, Not in catalogue)
+AMK	Amikacin	Group C	NOT DETECTED		No resistance-associated change found	WHO2023	S	yes	eis_c.-11G>A (100%, Not in catalogue); whiB6_c.-117G>A (100%, Not in catalogue); whiB6_c.-55T>C (100%, Not in catalogue); whiB6_c.*1G>C (100%, Not in catalogue)
+SM	Streptomycin	Group C	DETECTED	Assoc w R	rrs_n.514A>C (100%)	WHO2023	R	yes	gid_p.Leu79Ser (100%, 3) Uncertain significance); gid_c.-2C>T (100%, Not in catalogue); gid_c.-26G>A (100%, Not in catalogue)
+ETO	Ethionamide	Group C	NOT DETECTED		No resistance-associated change found	WHO2023	R	no	Rv0565c_p.Arg110His (100%, 3) Uncertain significance); ethA_p.Ala381Pro (100%, 3) Uncertain significance); Rv0565c_c.*24A>C (100%, Not in catalogue)
+PAS	Para-aminosalicylic acid	Group C	NOT DETECTED		No resistance-associated change found; PAS is not in the WHO 2023 catalogue - literature list only	tbdb_literature	S	yes	
+PMD	Pretomanid	BPaLM regimen	NOT DETECTED		No resistance-associated change found; inferred from WHO DLM-PMD cross-resistance (LoF in ddn/fbiA/fbiB/fbiC/fgd1/Rv2983) only	WHO2023_DLM_PMD_cross_resistance	S	yes	
+KAN	Kanamycin	Not recommended	NOT DETECTED		No resistance-associated change found	WHO2023	S	yes	eis_c.-11G>A (100%, Not in catalogue); whiB6_c.-117G>A (100%, Not in catalogue); whiB6_c.-55T>C (100%, Not in catalogue); whiB6_c.*1G>C (100%, Not in catalogue)
+CAP	Capreomycin	Not recommended	NOT DETECTED		No resistance-associated change found; low-level resistance not assessable at 149 position(s) (10-50x)	WHO2023	S	yes	whiB6_c.-117G>A (100%, Not in catalogue); whiB6_c.-55T>C (100%, Not in catalogue); whiB6_c.*1G>C (100%, Not in catalogue)

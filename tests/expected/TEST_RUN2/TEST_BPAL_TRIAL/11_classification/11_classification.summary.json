@@ -1,0 +1,64 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "11_classification",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "category": "Pre-XDR-TB",
+    "caveats": "mixed-strain infection detected (step 10)",
+    "resistant": "Rifampicin (RIF), Isoniazid (INH), Ethambutol (EMB), Pyrazinamide (PZA), Levofloxacin (LFX), Moxifloxacin (MFX), Streptomycin (SM)"
+  },
+  "metrics": [
+    {
+      "name": "WHO resistance category",
+      "plain": "Type of drug-resistant TB",
+      "value": "Pre-XDR-TB",
+      "unit": "",
+      "threshold": "WHO 2021 definitions",
+      "status": "WARN",
+      "provisional": false
+    },
+    {
+      "name": "Resistant to",
+      "plain": "Drugs with resistance detected",
+      "value": "Rifampicin (RIF), Isoniazid (INH), Ethambutol (EMB), Pyrazinamide (PZA), Levofloxacin (LFX), Moxifloxacin (MFX), Streptomycin (SM)",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Caveats",
+      "plain": "Points to note",
+      "value": "mixed-strain infection detected (step 10)",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    }
+  ],
+  "messages": [
+    "Definitions (WHO 2021): Hr-TB = isoniazid-resistant, rifampicin-susceptible; RR-TB = rifampicin-resistant; MDR-TB = rifampicin + isoniazid; pre-XDR-TB = RR/MDR-TB + any fluoroquinolone; XDR-TB = pre-XDR-TB + bedaquiline and/or linezolid.",
+    "This is a genotypic classification. Treatment decisions follow national guidelines and the treating clinician's judgement."
+  ],
+  "tools": [
+    {
+      "name": "classify.py",
+      "version": "0.1.0-dev",
+      "container": "mtb-report:1.1.0",
+      "command": null
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "11_classification.summary.json"
+      }
+    ]
+  },
+  "status": "WARN",
+  "generated": "2026-10-29 14:18",
+  "thresholds_version": "2026-10-29-draft1"
+}

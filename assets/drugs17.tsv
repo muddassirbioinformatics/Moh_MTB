@@ -1,0 +1,18 @@
+code	name	catalogue_drug	evidence	group	tbprofiler_name
+RIF	Rifampicin	Rifampicin	WHO2023	First-line	rifampicin
+INH	Isoniazid	Isoniazid	WHO2023	First-line	isoniazid
+EMB	Ethambutol	Ethambutol	WHO2023	First-line	ethambutol
+PZA	Pyrazinamide	Pyrazinamide	WHO2023	First-line	pyrazinamide
+LFX	Levofloxacin	Levofloxacin	WHO2023	Group A	levofloxacin
+MFX	Moxifloxacin	Moxifloxacin	WHO2023	Group A	moxifloxacin
+BDQ	Bedaquiline	Bedaquiline	WHO2023	Group A	bedaquiline
+LZD	Linezolid	Linezolid	WHO2023	Group A	linezolid
+CFZ	Clofazimine	Clofazimine	WHO2023	Group B	clofazimine
+DLM	Delamanid	Delamanid	WHO2023	Group C	delamanid
+AMK	Amikacin	Amikacin	WHO2023	Group C	amikacin
+SM	Streptomycin	Streptomycin	WHO2023	Group C	streptomycin
+ETO	Ethionamide	Ethionamide	WHO2023	Group C	ethionamide
+PAS	Para-aminosalicylic acid	Para-aminosalicylic acid	tbdb_literature	Group C	para-aminosalicylic_acid
+PMD	Pretomanid	Delamanid	WHO2023_DLM_PMD_cross_resistance	BPaLM regimen	pretomanid
+KAN	Kanamycin	Kanamycin	WHO2023	Not recommended	kanamycin
+CAP	Capreomycin	Capreomycin	WHO2023	Not recommended	capreomycin

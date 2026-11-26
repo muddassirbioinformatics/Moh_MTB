@@ -1,0 +1,165 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "07_annotation",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "n_used": 47,
+    "n_lof": 1
+  },
+  "metrics": [
+    {
+      "name": "Variants annotated",
+      "plain": "Changes described in terms of their effect on the gene",
+      "value": "47 of 47",
+      "unit": "",
+      "threshold": "all fixed/minority variants",
+      "status": "PASS",
+      "provisional": false
+    },
+    {
+      "name": "Gene-disrupting changes (LoF)",
+      "plain": "Changes that break a gene",
+      "value": 1,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Consequence: missense",
+      "plain": "Type: missense",
+      "value": 24,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Consequence: upstream_gene_variant",
+      "plain": "Type: upstream gene variant",
+      "value": 9,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Consequence: synonymous",
+      "plain": "Type: synonymous",
+      "value": 9,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Consequence: downstream_gene_variant",
+      "plain": "Type: downstream gene variant",
+      "value": 3,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Consequence: non_coding",
+      "plain": "Type: non coding",
+      "value": 1,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Consequence: frameshift",
+      "plain": "Type: frameshift",
+      "value": 1,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    }
+  ],
+  "messages": [
+    "gyrB_c.-60_-59insG (fixed, AF 100.0%): upstream_gene_variant",
+    "gyrA_p.Glu21Gln (fixed, AF 100.0%): missense",
+    "gyrA_p.Asp94Gly (fixed, AF 100.0%): missense",
+    "gyrA_p.Ser95Thr (fixed, AF 100.0%): missense",
+    "gyrA_p.Gly668Asp (fixed, AF 100.0%): missense",
+    "fgd1_p.Phe320Phe (fixed, AF 100.0%): synonymous",
+    "Rv0565c_c.*24A>C (fixed, AF 100.0%): downstream_gene_variant",
+    "Rv0565c_p.Val130Val (fixed, AF 100.0%): synonymous",
+    "Rv0565c_p.Arg110His (fixed, AF 100.0%): missense",
+    "rpoB_p.Ser450Leu (fixed, AF 100.0%): missense",
+    "rpoB_p.Ala1075Ala (fixed, AF 100.0%): synonymous",
+    "rpoC_p.Val483Gly (fixed, AF 100.0%): missense",
+    "mmpL5_p.Ile948Val (fixed, AF 100.0%): missense",
+    "mmpL5_p.Thr794Ile (fixed, AF 100.0%): missense",
+    "rpsL_c.-165T>C (fixed, AF 100.0%): upstream_gene_variant",
+    "Rv1129c_c.-28T>C (fixed, AF 100.0%): missense",
+    "rrs_n.1472359A>C (fixed, AF 100.0%): non_coding",
+    "rpsA_p.Arg212Arg (fixed, AF 100.0%): synonymous",
+    "tsnR_p.Leu232Pro (fixed, AF 100.0%): missense",
+    "tlyA_p.Leu11Leu (fixed, AF 100.0%): synonymous",
+    "katG_p.Pro141Ser (fixed, AF 100.0%): missense",
+    "katG_c.*150_*163delCGAGACGGGGATGA (minority, AF 67.8%): frameshift - gene-disrupting",
+    "katG_p.Arg463Leu (fixed, AF 100.0%): missense",
+    "katG_p.Ser315Thr (fixed, AF 100.0%): missense",
+    "PPE35_p.Leu896Ser (fixed, AF 100.0%): missense",
+    "Rv1979c_p.Arg409Gln (fixed, AF 100.0%): missense",
+    "Rv1979c_c.-129A>G (fixed, AF 100.0%): upstream_gene_variant",
+    "pncA_p.Ala199Ala (fixed, AF 100.0%): synonymous",
+    "pncA_p.Cys14Arg (fixed, AF 100.0%): missense",
+    "eis_c.-11G>A (fixed, AF 100.0%): upstream_gene_variant",
+    "Rv3236c_p.Thr102Ala (fixed, AF 100.0%): missense",
+    "mtrB_p.Met517Leu (fixed, AF 100.0%): missense",
+    "ddn_c.*72delG (fixed, AF 100.0%): downstream_gene_variant",
+    "embC_p.Arg927Arg (fixed, AF 100.0%): synonymous",
+    "embA_p.Cys76Cys (fixed, AF 100.0%): synonymous",
+    "embB_p.Met306Ile (fixed, AF 100.0%): missense",
+    "aftB_p.Asp397Gly (fixed, AF 100.0%): missense",
+    "ethA_p.Ala381Pro (fixed, AF 100.0%): missense",
+    "whiB6_c.-75delG (fixed, AF 100.0%): upstream_gene_variant",
+    "whiB6_c.-117G>A (fixed, AF 100.0%): upstream_gene_variant",
+    "Consequences from bcftools csq decide loss-of-function; SnpEff names are for display. rRNA (rrs, rrl) changes are named n.<position> and matched by coordinate in step 09."
+  ],
+  "tools": [
+    {
+      "name": "bcftools csq",
+      "version": "1.24",
+      "container": "quay.io/biocontainers/bcftools:1.24--h118bc1c_4",
+      "command": "bcftools csq -C 11 -p a (fixed); -l (minority) with derived/H37Rv.csq.gff3"
+    },
+    {
+      "name": "SnpEff",
+      "version": "5.4",
+      "container": "quay.io/biocontainers/snpeff:5.4",
+      "command": "snpEff -ud 200 H37Rv (local database built from the frozen GenBank)"
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/variants.annotated.tsv"
+      },
+      {
+        "path": "data/fixed.csq.vcf"
+      },
+      {
+        "path": "data/minority.csq.vcf"
+      },
+      {
+        "path": "data/fixed.snpeff.vcf"
+      },
+      {
+        "path": "data/minority.snpeff.vcf"
+      }
+    ]
+  },
+  "status": "PASS",
+  "generated": "2026-10-29 14:18",
+  "thresholds_version": "2026-10-29-draft1"
+}

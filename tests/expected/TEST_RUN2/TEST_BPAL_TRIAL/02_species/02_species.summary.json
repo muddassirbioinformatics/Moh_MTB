@@ -1,0 +1,130 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "02_species",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "species": "Mycobacterium tuberculosis",
+    "mtbc_word": "detected",
+    "others": "none"
+  },
+  "metrics": [
+    {
+      "name": "Mykrobe: MTB complex",
+      "plain": "TB family detected (method 1: Mykrobe)",
+      "value": "detected",
+      "unit": "",
+      "threshold": "MTBC required",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Mykrobe: species",
+      "plain": "TB family member (method 1)",
+      "value": "Mycobacterium tuberculosis",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Sylph: MTB complex",
+      "plain": "TB family detected (method 2: Sylph)",
+      "value": "ANI 99.9%",
+      "unit": "",
+      "threshold": "ANI >= 95%",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Methods agree",
+      "plain": "Both methods agree",
+      "value": "yes",
+      "unit": "",
+      "threshold": "Mykrobe = Sylph",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Other organisms (Sylph)",
+      "plain": "Other organisms found in the sample",
+      "value": "none",
+      "unit": "",
+      "threshold": "none at ANI >= 95% and >= 1%",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Kraken2: reads classified MTBC",
+      "plain": "Share of reads that look like TB (screen)",
+      "value": 89.69,
+      "unit": "%",
+      "threshold": "CHECK < 80%",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Kraken2: unclassified",
+      "plain": "Unclassified",
+      "value": 7.15,
+      "unit": "%",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Kraken2: other species >= 1%",
+      "plain": "Other species (screen)",
+      "value": "none",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    }
+  ],
+  "messages": [
+    "Mykrobe sub complex: subMycobacterium_tuberculosis_complex (lineage is called in step 08 by TB-Profiler).",
+    "Mykrobe lineage: lineage2.2.1 (lineage is called in step 08 by TB-Profiler).",
+    "Mykrobe also outputs resistance predictions from its own (WHO 2021-based) panel; these are not used. Resistance is graded only against the WHO 2023 catalogue in step 09.",
+    "Observed-vs-expected breadth check for co-infecting organisms (plan v1.1) is not yet implemented; organisms listed here need manual review.",
+    "Sylph hit: Mycobacterium tuberculosis - ANI 99.94%, abundance 100.00%, effective coverage 74.0x (GCF_000195955.2_genomic.fna.gz)"
+  ],
+  "tools": [
+    {
+      "name": "Mykrobe",
+      "version": "0.13.0 (panel 20230928/202309)",
+      "container": "quay.io/biocontainers/mykrobe:0.13.0--py311h22b1866_5",
+      "command": "mykrobe predict -S tb --panels_dir resources/mykrobe/0.13.0 (panel 202309)"
+    },
+    {
+      "name": "Sylph",
+      "version": "1.0.0",
+      "container": "quay.io/biocontainers/sylph:1.0.0--hb42e459_0",
+      "command": "sylph profile resources/sylph/gtdb_r226_c200_dbv1/gtdb-r226-c200-dbv1.syldb -1 R1 -2 R2"
+    },
+    {
+      "name": "Kraken2",
+      "version": "2.17.2",
+      "container": "quay.io/biocontainers/kraken2:2.17.2--pl5321h3be2455_0",
+      "command": "kraken2 --db resources/kraken2/standard8_20241228 --paired"
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/mykrobe.json"
+      },
+      {
+        "path": "data/sylph.tsv"
+      },
+      {
+        "path": "data/kraken2.report"
+      }
+    ]
+  },
+  "status": "PASS",
+  "generated": "2026-10-29 14:17",
+  "thresholds_version": "2026-10-29-draft1"
+}

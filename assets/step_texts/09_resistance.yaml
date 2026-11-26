@@ -1,0 +1,40 @@
+title_plain: "Which drugs will not work?"
+title_tech: "Step 09 - Resistance grading against the WHO 2023 mutation catalogue"
+
+what: >
+  We check every DNA change found in the resistance genes against the World Health Organization's
+  2023 list of mutations known to cause drug resistance, and give a result for each of the
+  {n_drugs} drugs.
+
+why: >
+  This is the result doctors use to choose treatment. Only changes that WHO has graded as causing
+  resistance count. Where a key part of a gene was not read well enough, we say "Indeterminate"
+  rather than wrongly reporting the drug as effective.
+
+result:
+  PASS: >
+    Resistance changes detected for: {detected}. No resistance change found for {n_not} drug(s).
+  WARN: >
+    Resistance changes detected for: {detected}. Indeterminate: {indeterminate}. Some items need
+    review; see the items marked CHECK below.
+  FAIL: "Resistance grading did not complete for this sample."
+
+next:
+  PASS: "The drug results go to the resistance classification (step 11) and the final report."
+  WARN: >
+    A bioinformatician reviews Indeterminate drugs and any disagreement with the second-opinion
+    software before the report is released.
+  FAIL: "Re-run the step; if it fails again, the bioinformatician investigates."
+
+technical_method: >
+  Exact (position, ref, alt) matching of normalised variants to the WHO 2023 genomic coordinates
+  (NC_000962.3), as instructed by WHO, then linking to the master-file grading. Grade 1 (Assoc w R)
+  and grade 2 (Assoc w R - Interim) are resistance. Multi-base changes in one codon (fixed calls) are
+  matched at codon level from the bcftools csq consequence. Gene-level rules: loss-of-function
+  (frameshift, stop gained, start lost) and assembly-confirmed deletions use the catalogue's
+  <gene>_LoF / <gene>_deletion entries. Epistasis: a fixed mmpL5 LoF cancels fixed Rv0678
+  resistance for BDQ/CFZ; a fixed eis LoF cancels fixed eis-promoter resistance for AMK/KAN.
+  Pretomanid uses only the WHO "DLM-PMD cross-resistance" LoF rules; PAS uses the tbdb literature
+  list (lower evidence). A drug is Indeterminate when no resistance is found but any of its grade
+  1-2 positions is below 10x or a linked gene has an unconfirmed drop-out. TB-Profiler's calls are
+  shown as an independent cross-check only.

@@ -1,0 +1,27 @@
+title_plain: "Are these patients' strains linked?"
+title_tech: "R2 - Relatedness (pairwise SNP distance, Walker et al. 2013)"
+
+what: >
+  We compare the whole genomes of the TB strains from different patients and count how many DNA
+  letters differ between each pair.
+
+why: >
+  Strains that differ by only a handful of letters were very probably passed recently from one
+  person to another (or are a relapse of the same infection). This helps public-health teams find
+  outbreaks and decide whose contacts to trace.
+
+result:
+  PASS: "{n} samples compared. No pair close enough to suggest recent transmission was found."
+  WARN: "{n} samples compared. Possibly linked groups: {clusters}. See the table below."
+  FAIL: "The relatedness analysis did not complete."
+
+next:
+  PASS: "No action needed."
+  WARN: "Share with the TB programme / infection-control team for epidemiological follow-up."
+  FAIL: "The bioinformatician investigates."
+
+technical_method: >
+  Per sample, a consensus genome is built from fixed SNPs (bcftools consensus) with the
+  low-confidence mask and all positions below 10x set to N. Pairwise distances count A/C/G/T
+  differences only (snp-dists). Single-linkage clusters at <= 5 SNPs. With >= 4 samples an IQ-TREE
+  maximum-likelihood tree (GTR+G) is built. Thresholds follow Walker et al. 2013 and are provisional.

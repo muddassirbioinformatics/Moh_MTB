@@ -1,0 +1,32 @@
+title_plain: "Which TB family is this?"
+title_tech: "Step 08 - Lineage, sub-lineage and in-silico spoligotype (TB-Profiler)"
+
+what: >
+  TB bacteria fall into families (lineages) that spread in different parts of the world. We read a
+  set of marker positions in the DNA to work out which family and sub-family this strain belongs to,
+  and also give its traditional "spoligotype" strain type.
+
+why: >
+  The family helps public-health teams track how TB spreads, and some families (for example Beijing,
+  lineage 2) are linked with drug resistance. Finding markers from two families can mean the patient
+  carries two different strains.
+
+result:
+  PASS: >
+    This strain belongs to {lineage} ({family}), sub-family {sub_lineage}. Traditional strain type:
+    {spoligo} (SIT {sit}).
+  WARN: >
+    Family result: {lineage} ({family}), but something needs review (for example markers from more
+    than one family). See the items marked CHECK below.
+  FAIL: "The TB family could not be determined for this sample."
+
+next:
+  PASS: "No action needed. The family is shown on the final report."
+  WARN: "Mixed-strain infection is assessed in step 10; a bioinformatician reviews the result."
+  FAIL: "The report will show the lineage as not determined."
+
+technical_method: >
+  TB-Profiler 6.7.0 (tbdb database, lineage barcode after Napier et al. 2020 / Coll et al. 2014)
+  on the trimmed reads (--no_trim), with in-silico spoligotyping from the 43 spacer sequences.
+  Lineage fractions are the share of reads supporting each lineage-defining allele. TB-Profiler's
+  resistance calls are stored in data/ for the step 09 cross-check only.

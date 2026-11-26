@@ -1,0 +1,35 @@
+title_plain: "Is more than one TB strain present?"
+title_tech: "Step 10 - Mixed-strain infection (heterozygous-site test + lineage mixture)"
+
+what: >
+  A patient can be infected with two different TB strains at the same time. We look across the whole
+  genome for positions where two different DNA letters are both present, which happens when two
+  strains are mixed.
+
+why: >
+  If one strain is resistant and the other is not, the resistance may show up only weakly. Knowing
+  that the infection is mixed helps doctors interpret low-level resistance results and may affect
+  treatment monitoring.
+
+result:
+  PASS: "No mixed-strain infection was detected ({n_het} mixed positions found)."
+  WARN: >
+    A mixed-strain infection was {verdict}: {n_het} mixed positions found; estimated share of the
+    second strain {share}. See the items marked CHECK below.
+  FAIL: "The mixed-infection test did not complete for this sample."
+
+next:
+  PASS: "No action needed."
+  WARN: >
+    The final report states that a mixed infection was detected. A bioinformatician reviews the
+    result; minority resistance findings should be read in this light.
+  FAIL: "Re-run the step; if it fails again, the bioinformatician investigates."
+
+technical_method: >
+  bcftools mpileup/call (diploid model, SNPs only) over the genome excluding the low-confidence mask
+  (tbdb mask, 311,910 bp). A site is heterozygous when depth >= 20 and the minor allele is 10-90% with
+  >= 5 reads; sites within 100 bp of the previous one count once (dense clusters are mis-mapping
+  artefacts); >= 10 independent sites classify the sample as mixed (MixInfect-style principle, re-implemented;
+  threshold provisional until V4 in-silico mixtures). Minor-strain share = median minor-allele
+  frequency. Lineage mixture: more than one TB-Profiler main lineage at >= 10%. The OmegaTB rule
+  (>= 5 minor-allele reads per strand, MAPQ > 45) is counted separately for comparison.

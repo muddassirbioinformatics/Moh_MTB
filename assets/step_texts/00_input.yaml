@@ -1,0 +1,40 @@
+# Wording for the step 00 PDF. {name} placeholders are filled from the summary JSON "values".
+title_plain: "Checking the sample and files"
+title_tech: "Step 00 - Input validation and resource integrity"
+
+what: >
+  Before any analysis starts, we check that we have the right files for this sample, that they
+  arrived complete and undamaged, and that the reference databases the pipeline relies on are
+  exactly the approved versions.
+
+why: >
+  A damaged or mismatched file can produce a wrong result that still looks normal. Checking first
+  means problems are caught before they can affect the drug-resistance report.
+
+result:
+  PASS: >
+    Both sequencing files for sample {sample_id} are complete and match each other
+    ({read_pairs} read pairs). All {resources_checked} reference database files are the approved
+    versions.
+  WARN: >
+    The files for sample {sample_id} can be analysed, but something needs a look: see the
+    items marked CHECK below.
+  FAIL: >
+    The files for sample {sample_id} cannot be analysed safely. See the items marked FAIL below.
+
+next:
+  PASS: "No action needed. The sample continues to read cleaning (step 01)."
+  WARN: "A bioinformatician reviews the flagged item before the final report is released."
+  FAIL: >
+    The pipeline stops for this sample. Re-copy the files from the sequencer, or correct the
+    sample sheet, and run again. If a database check failed, no samples are run until the
+    database is restored from the approved copy.
+
+technical_method: >
+  The sample sheet row is validated (sample ID pattern, file paths). Each FASTQ is fully
+  decompressed to test gzip integrity and count reads; R1 and R2 must contain the same number of
+  reads. The first read header is parsed for instrument, run, flow cell and lane (Illumina
+  CASAVA 1.8+ format; SRA-renamed headers are reported as not available). MD5 checksums of both
+  FASTQ files are recorded. Reference resources are compared against resources/MANIFEST.stat
+  (path, size, modification time) on every run; with --full_resource_check the SHA-256 manifest
+  is verified instead.

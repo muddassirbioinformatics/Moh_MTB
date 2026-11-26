@@ -1,0 +1,39 @@
+# Wording for the step 01 PDF. {name} placeholders are filled from the summary JSON "values".
+title_plain: "Cleaning the raw reads"
+title_tech: "Step 01 - Read QC and trimming (fastp)"
+
+what: >
+  The sequencer reads the TB DNA in millions of short pieces called reads. Some of these pieces
+  have low-quality ends or leftover lab chemicals (adapters) attached. This step trims those off
+  and removes reads that are too short or too poor to trust.
+
+why: >
+  Poor-quality letters can look like mutations. Removing them prevents false resistance calls,
+  and measuring how much good data we have tells us whether the sample was sequenced deeply
+  enough.
+
+result:
+  PASS: >
+    The sequencer produced {raw_yield_gb} billion DNA letters for this sample. After cleaning,
+    {reads_kept_pct}% of the reads were kept and {q30_after_pct}% of letters are high quality.
+    This is enough good data to continue.
+  WARN: >
+    The sample has usable data ({raw_yield_gb} billion DNA letters, {q30_after_pct}% high
+    quality), but at least one measure is below our target. See the items marked CHECK below.
+  FAIL: >
+    The sample does not have enough good-quality data ({raw_yield_gb} billion DNA letters,
+    {q30_after_pct}% high quality). A reliable resistance result cannot be produced from it.
+
+next:
+  PASS: "No action needed. The cleaned reads continue to species identification (step 02)."
+  WARN: >
+    Analysis continues. Low depth mainly affects detection of small (minority) resistant
+    populations; the final report will say so where it applies.
+  FAIL: "Re-sequence the sample (or re-extract DNA if the library itself was poor)."
+
+technical_method: >
+  fastp in paired-end mode with adapter auto-detection for PE, sliding-window 3' trimming
+  (cut_right; window {cut_right_window_size}, mean quality {cut_right_mean_quality}), minimum
+  length {length_required} bp after trimming, and poly-G trimming forced on (--trim_poly_g; fastp's
+  automatic switch depends on the read header, which archives and some exports rewrite). Yield is measured on raw reads; Q30 and survival on reads
+  after filtering. Trimmed reads are kept in the work directory only and are passed to step 02/03.

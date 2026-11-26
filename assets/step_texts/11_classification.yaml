@@ -1,0 +1,26 @@
+title_plain: "What type of drug-resistant TB is this?"
+title_tech: "Step 11 - WHO programmatic resistance classification"
+
+what: >
+  Using the drug results from step 09 we place the infection into the standard WHO categories that
+  doctors and TB programmes use (for example MDR-TB or XDR-TB).
+
+why: >
+  The category decides which treatment regimen the national TB programme recommends and how the case
+  is reported.
+
+result:
+  PASS: "Category: {category}. Resistant to: {resistant}."
+  WARN: "Category: {category}. Resistant to: {resistant}. Points to note: {caveats}."
+  FAIL: "The category could not be determined for this sample."
+
+next:
+  PASS: "The category is shown on the final report."
+  WARN: "The category and the points to note are shown on the final report for the clinician."
+  FAIL: "The bioinformatician reviews the drug results before release."
+
+technical_method: >
+  WHO 2021 definitions applied to the step 09 calls: Hr-TB (INH-R, RIF-S), RR-TB (RIF-R), MDR-TB
+  (RIF-R + INH-R), pre-XDR-TB (RR/MDR + LFX or MFX), XDR-TB (pre-XDR + BDQ and/or LZD). An
+  Indeterminate drug that could change the category is reported as a caveat, never assumed
+  susceptible. Minority-only resistance and mixed infection (step 10) are added as caveats.

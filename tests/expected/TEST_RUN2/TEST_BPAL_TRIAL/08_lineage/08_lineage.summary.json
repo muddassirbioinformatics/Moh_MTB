@@ -1,0 +1,82 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "08_lineage",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "lineage": "lineage2",
+    "family": "East-Asian",
+    "sub_lineage": "lineage2.2.2",
+    "spoligo": "Beijing",
+    "sit": "1"
+  },
+  "metrics": [
+    {
+      "name": "Main lineage",
+      "plain": "TB family (lineage)",
+      "value": "lineage2 (East-Asian)",
+      "unit": "",
+      "threshold": "determined",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Sub-lineage",
+      "plain": "Sub-family",
+      "value": "lineage2.2.2",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Single lineage",
+      "plain": "Only one TB family detected",
+      "value": "yes",
+      "unit": "",
+      "threshold": "one main lineage at >= 10%",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Spoligotype",
+      "plain": "Traditional strain type (from the genome)",
+      "value": "Beijing SIT 1 (octal 000000000003771)",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    }
+  ],
+  "messages": [
+    "lineage2 (East-Asian): 100.0% of lineage-marker reads; RD RD105",
+    "lineage2.2 (East-Asian (Beijing)): 100.0% of lineage-marker reads; RD RD105;RD207",
+    "lineage2.2.2 (East-Asian (Beijing)): 100.0% of lineage-marker reads; RD RD105;RD207",
+    "Spoligotype binary: 0000000000000000000000000000000000111111111",
+    "TB-Profiler QC: 99.6% reads mapped, genome median depth 118.0x.",
+    "TB-Profiler also predicts resistance from its own database; that is used only as a cross-check in step 09, never on the report."
+  ],
+  "tools": [
+    {
+      "name": "TB-Profiler",
+      "version": "6.7.0",
+      "container": "quay.io/biocontainers/tb-profiler:6.7.0--pyhdfd78af_0",
+      "command": "tb-profiler profile --no_trim --spoligotype --db tbdb (commit 400bec70, Wed Mar 11 19:34:47 2026 +0100)"
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/tbprofiler.results.json"
+      },
+      {
+        "path": "data/tbprofiler.results.txt"
+      }
+    ]
+  },
+  "status": "PASS",
+  "generated": "2026-10-29 14:16",
+  "thresholds_version": "2026-10-29-draft1"
+}

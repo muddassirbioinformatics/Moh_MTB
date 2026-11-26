@@ -1,0 +1,149 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "05_variants",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "n_fixed": 46,
+    "n_minority": 1,
+    "n_snp": 1613,
+    "n_ind": 159
+  },
+  "metrics": [
+    {
+      "name": "Genome-wide variants (bcftools)",
+      "plain": "DNA changes across the whole genome",
+      "value": "1613 SNPs, 159 indels",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Resistance genes: fixed variants",
+      "plain": "Changes in resistance genes found in (nearly) all bacteria",
+      "value": 46,
+      "unit": "",
+      "threshold": "AF >= 90%",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Resistance genes: minority variants",
+      "plain": "Changes in resistance genes found in only part of the bacteria",
+      "value": 1,
+      "unit": "",
+      "threshold": "AF 10-90%, >= 5 reads/strand, LoFreq + freebayes agree",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Resistance genes: below threshold",
+      "plain": "Weak signals not used for the result",
+      "value": 48,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Variant calling completed",
+      "plain": "Variant finding completed",
+      "value": "yes",
+      "unit": "",
+      "threshold": "all three callers ran",
+      "status": "PASS",
+      "provisional": true
+    }
+  ],
+  "messages": [
+    "Whether a change causes resistance is decided in step 09 (WHO 2023 catalogue), not here.",
+    "gyrB 5180 T>TG: fixed, AF 100.0%, depth 163, callers bcftools,lofreq,freebayes",
+    "gyrA 7362 G>C: fixed, AF 100.0%, depth 170, callers bcftools,lofreq,freebayes",
+    "gyrA 7582 A>G: fixed, AF 100.0%, depth 131, callers bcftools,lofreq,freebayes",
+    "gyrA 7585 G>C: fixed, AF 100.0%, depth 133, callers bcftools,lofreq,freebayes",
+    "gyrA 9304 G>A: fixed, AF 100.0%, depth 129, callers bcftools,lofreq,freebayes",
+    "fgd1 491742 T>C: fixed, AF 100.0%, depth 158, callers bcftools,lofreq,freebayes",
+    "Rv0565c 655986 T>G: fixed, AF 100.0%, depth 117, callers bcftools,lofreq,freebayes",
+    "Rv0565c 657081 C>T: fixed, AF 100.0%, depth 139, callers bcftools,lofreq,freebayes",
+    "Rv0565c 657142 C>T: fixed, AF 100.0%, depth 155, callers bcftools,lofreq,freebayes",
+    "rpoB 761155 C>T: fixed, AF 100.0%, depth 121, callers bcftools,lofreq,freebayes",
+    "rpoB 763031 T>C: fixed, AF 100.0%, depth 125, callers bcftools,lofreq,freebayes",
+    "rpoC 764817 T>G: fixed, AF 100.0%, depth 110, callers bcftools,lofreq,freebayes",
+    "mmpL5 775639 T>C: fixed, AF 100.0%, depth 120, callers bcftools,lofreq,freebayes",
+    "mmpL5 776100 G>A: fixed, AF 100.0%, depth 109, callers bcftools,lofreq,freebayes",
+    "rpsL 781395 T>C: fixed, AF 100.0%, depth 120, callers bcftools,lofreq,freebayes",
+    "Rv1129c 1254562 A>G: fixed, AF 100.0%, depth 136, callers bcftools,lofreq,freebayes",
+    "rrs 1472359 A>C: fixed, AF 100.0%, depth 121, callers bcftools,lofreq,freebayes",
+    "rpsA 1834177 A>C: fixed, AF 100.0%, depth 138, callers bcftools,lofreq,freebayes",
+    "tsnR 1854300 T>C: fixed, AF 100.0%, depth 82, callers bcftools,lofreq,freebayes",
+    "tlyA 1917972 A>G: fixed, AF 100.0%, depth 62, callers bcftools,lofreq,freebayes",
+    "katG 2153462 G>A: fixed, AF 100.0%, depth 116, callers bcftools,lofreq,freebayes",
+    "katG 2154724 C>A: fixed, AF 100.0%, depth 138, callers bcftools,lofreq,freebayes",
+    "katG 2155168 C>G: fixed, AF 100.0%, depth 109, callers bcftools,lofreq,freebayes",
+    "PPE35 2167926 A>G: fixed, AF 100.0%, depth 134, callers bcftools,lofreq,freebayes",
+    "Rv1979c 2221939 C>T: fixed, AF 100.0%, depth 147, callers bcftools,lofreq,freebayes",
+    "Rv1979c 2223293 T>C: fixed, AF 100.0%, depth 126, callers bcftools,lofreq,freebayes",
+    "pncA 2288085 G>C: fixed, AF 100.0%, depth 140, callers bcftools,lofreq,freebayes",
+    "pncA 2289202 A>G: fixed, AF 100.0%, depth 140, callers bcftools,lofreq,freebayes",
+    "eis 2713795 C>T: fixed, AF 100.0%, depth 101, callers bcftools,lofreq,freebayes",
+    "Rv3236c 3612813 T>C: fixed, AF 100.0%, depth 103, callers bcftools,lofreq,freebayes",
+    "mtrB 3625065 T>G: fixed, AF 100.0%, depth 111, callers bcftools,lofreq,freebayes",
+    "ddn 3987370 CG>C: fixed, AF 100.0%, depth 86, callers bcftools,lofreq,freebayes",
+    "embC 4242643 C>T: fixed, AF 100.0%, depth 124, callers bcftools,lofreq,freebayes",
+    "embA 4243460 C>T: fixed, AF 100.0%, depth 139, callers bcftools,lofreq,freebayes",
+    "embB 4247431 G>C: fixed, AF 100.0%, depth 148, callers bcftools,lofreq,freebayes",
+    "aftB 4267647 T>C: fixed, AF 100.0%, depth 76, callers bcftools,lofreq,freebayes",
+    "ethR 4326333 C>G: fixed, AF 100.0%, depth 146, callers bcftools,lofreq,freebayes",
+    "whiB6 4338595 GC>G: fixed, AF 100.0%, depth 142, callers bcftools,lofreq,freebayes",
+    "whiB6 4338732 G>A: fixed, AF 100.0%, depth 175, callers bcftools,lofreq,freebayes",
+    "whiB6 4338794 T>C: fixed, AF 100.0%, depth 137, callers bcftools,lofreq,freebayes"
+  ],
+  "tools": [
+    {
+      "name": "bcftools",
+      "version": "1.24",
+      "container": "quay.io/biocontainers/bcftools:1.24--h118bc1c_4",
+      "command": "bcftools mpileup -a AD,ADF,ADR,DP | bcftools call -m --ploidy 1 -v (genome-wide); bcftools norm -m -any -a (all callers)"
+    },
+    {
+      "name": "LoFreq",
+      "version": "2.1.5",
+      "container": "quay.io/biocontainers/lofreq:2.1.5--py311h6385618_16",
+      "command": "lofreq indelqual --dindel; lofreq call-parallel --call-indels -l resistance_regions.bed"
+    },
+    {
+      "name": "freebayes",
+      "version": "1.3.10",
+      "container": "quay.io/biocontainers/freebayes:1.3.10--h3752d28_1",
+      "command": "freebayes -p 1 --pooled-continuous -F 0.05 -C 3 -t resistance_regions.bed"
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/variants.tsv"
+      },
+      {
+        "path": "data/bcftools.norm.vcf.gz"
+      },
+      {
+        "path": "data/lofreq.norm.vcf.gz"
+      },
+      {
+        "path": "data/freebayes.norm.vcf.gz"
+      },
+      {
+        "path": "data/fixed.vcf"
+      },
+      {
+        "path": "data/minority.vcf"
+      }
+    ]
+  },
+  "status": "PASS",
+  "generated": "2026-10-29 14:17",
+  "thresholds_version": "2026-10-29-draft1"
+}

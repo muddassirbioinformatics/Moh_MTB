@@ -1,0 +1,36 @@
+title_plain: "Finding the DNA changes"
+title_tech: "Step 05 - Variant calling (bcftools; LoFreq + freebayes for minority variants)"
+
+what: >
+  We compare this sample's DNA letter by letter with the TB reference and list every difference.
+  In the resistance genes we also look for changes carried by only part of the bacteria (for
+  example a resistant sub-population that is starting to take over).
+
+why: >
+  Drug resistance in TB is caused by DNA changes in specific genes. Finding small resistant
+  sub-populations early matters, because they can grow during treatment. Requiring two independent
+  methods to agree on these weaker signals keeps false alarms down.
+
+result:
+  PASS: >
+    In the resistance genes we found {n_fixed} change(s) present in essentially all bacteria and
+    {n_minority} change(s) present in part of them. Whether any of these cause resistance is
+    decided in step 09.
+  WARN: >
+    Variant finding completed with warnings: {n_fixed} fixed and {n_minority} partial change(s) in
+    the resistance genes. See the items marked CHECK below.
+  FAIL: "Variant finding did not complete for this sample."
+
+next:
+  PASS: "No action needed. The changes are described (step 07) and then checked against the WHO list (step 09)."
+  WARN: "A bioinformatician reviews the flagged items."
+  FAIL: "Re-run the step; if it fails again, the bioinformatician investigates."
+
+technical_method: >
+  bcftools mpileup/call (haploid, multiallelic caller, base and mapping quality filters) over the
+  whole genome for fixed calls. LoFreq (with Dindel indel qualities) and freebayes (pooled-continuous,
+  haploid) over the 65 resistance regions for minority calls. All VCFs are left-aligned, split and
+  atomised with bcftools norm so the same change has the same representation in every caller.
+  Classification: fixed if AF >= 90%; minority if 10-90% AND LoFreq and freebayes both call it at
+  >= 10% AND >= 5 alternate reads on each strand AND LoFreq filter PASS; otherwise below threshold
+  (kept in the table, not used for the result). Sites below 10x are not called.

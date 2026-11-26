@@ -1,0 +1,98 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "10_mixed_infection",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "verdict": "detected",
+    "n_het": 84,
+    "share": "24%",
+    "mixed": true
+  },
+  "metrics": [
+    {
+      "name": "Heterozygous sites (outside mask)",
+      "plain": "Positions where two different DNA letters are present",
+      "value": "84 independent (107 before merging sites within 100 bp)",
+      "unit": "",
+      "threshold": "mixed if >= 10 independent sites",
+      "status": "WARN",
+      "provisional": true
+    },
+    {
+      "name": "Lineage mixture",
+      "plain": "Markers from more than one TB family",
+      "value": "no",
+      "unit": "",
+      "threshold": "one main lineage",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Estimated minor strain share",
+      "plain": "Estimated share of the second strain",
+      "value": "24%",
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "OmegaTB-rule sites (comparison)",
+      "plain": "Same test using the OmegaTB rule (for comparison)",
+      "value": 19,
+      "unit": "",
+      "threshold": ">= 5 minor reads/strand, MAPQ >= 46",
+      "status": "INFO",
+      "provisional": false
+    }
+  ],
+  "messages": [
+    "A mixed infection means resistance present in only one strain may appear as a minority variant (step 05/09); minority resistance calls should be interpreted with this in mind.",
+    "Method: MixInfect-style heterozygous-site count re-implemented in this pipeline (MixInfect and QuantTB are not available as validated containers). The threshold is provisional until validation with in-silico mixtures (V4).",
+    "Heterozygous site 24704: minor allele 32.0%",
+    "Heterozygous site 24707: minor allele 33.3%",
+    "Heterozygous site 24716: minor allele 43.8%",
+    "Heterozygous site 34551: minor allele 39.1%",
+    "Heterozygous site 38982: minor allele 13.6%",
+    "Heterozygous site 168183: minor allele 40.5%",
+    "Heterozygous site 183856: minor allele 16.7%",
+    "Heterozygous site 331587: minor allele 29.6%",
+    "Heterozygous site 359951: minor allele 42.1%",
+    "Heterozygous site 396233: minor allele 25.5%",
+    "Heterozygous site 406948: minor allele 17.5%",
+    "Heterozygous site 421834: minor allele 43.6%",
+    "Heterozygous site 454300: minor allele 36.4%",
+    "Heterozygous site 649568: minor allele 21.4%",
+    "Heterozygous site 713121: minor allele 32.1%"
+  ],
+  "tools": [
+    {
+      "name": "bcftools",
+      "version": "1.24",
+      "container": "quay.io/biocontainers/bcftools:1.24--h118bc1c_4",
+      "command": "bcftools mpileup -q 20 (and -q 46 for the OmegaTB rule) -a AD,ADF,ADR | bcftools call -m -v -V indels; low_confidence_mask.bed applied afterwards"
+    },
+    {
+      "name": "mixed_infection.py",
+      "version": "0.1.0-dev",
+      "container": "mtb-report:1.1.0",
+      "command": null
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/het_q20.vcf.gz"
+      },
+      {
+        "path": "data/het_omega.vcf.gz"
+      }
+    ]
+  },
+  "status": "WARN",
+  "generated": "2026-10-29 14:16",
+  "thresholds_version": "2026-10-29-draft1"
+}

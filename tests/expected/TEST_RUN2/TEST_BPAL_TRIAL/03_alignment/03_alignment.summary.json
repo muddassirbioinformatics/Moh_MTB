@@ -1,0 +1,98 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "03_alignment",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "mapped_pct": "99.6",
+    "dup_pct": "1.1"
+  },
+  "metrics": [
+    {
+      "name": "Reads mapped to H37Rv",
+      "plain": "Share of reads that match the TB reference",
+      "value": 99.61,
+      "unit": "%",
+      "threshold": "FAIL < 80%; CHECK < 90%",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Properly paired",
+      "plain": "Properly paired",
+      "value": 99.3,
+      "unit": "%",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Duplicate reads",
+      "plain": "Duplicate reads",
+      "value": 1.12,
+      "unit": "%",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Primary reads",
+      "plain": "Primary reads",
+      "value": 3969052,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    },
+    {
+      "name": "Optical duplicates",
+      "plain": "Optical duplicates",
+      "value": 0,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    }
+  ],
+  "messages": [
+    "Duplicates are marked, not removed; variant callers in step 05 ignore them."
+  ],
+  "tools": [
+    {
+      "name": "BWA-MEM",
+      "version": "0.7.19-r1273",
+      "container": "quay.io/biocontainers/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40:f45ad9036aa41bb10f875a330fa877d8869018a1-0",
+      "command": "bwa mem -t 8 -R '@RG\\tID:TEST_BPAL_TRIAL\\tSM:TEST_BPAL_TRIAL\\tPL:ILLUMINA' $HOME/mtbdata/MTB_DATA/resources/reference/H37Rv_NC_000962.3/H37Rv.fasta TEST_BPAL_TRIAL_R1.trim.fastq.gz TEST_BPAL_TRIAL_R2.trim.fastq.gz\n| samtools fixmate -m - - | samtools sort -@ 4 -o sorted.bam\n&& samtools markdup -s --json -f data/markdup.json sorted.bam data/TEST_BPAL_TRIAL.bam"
+    },
+    {
+      "name": "samtools",
+      "version": "1.22.1",
+      "container": "quay.io/biocontainers/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40:f45ad9036aa41bb10f875a330fa877d8869018a1-0",
+      "command": null
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/TEST_BPAL_TRIAL.bam"
+      },
+      {
+        "path": "data/TEST_BPAL_TRIAL.bam.bai"
+      },
+      {
+        "path": "data/flagstat.json"
+      },
+      {
+        "path": "data/markdup.json"
+      },
+      {
+        "path": "data/samtools_stats.txt"
+      }
+    ]
+  },
+  "status": "PASS",
+  "generated": "2026-10-29 14:15",
+  "thresholds_version": "2026-10-29-draft1"
+}

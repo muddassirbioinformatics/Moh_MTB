@@ -1,0 +1,117 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "00_input",
+  "status": "PASS",
+  "pipeline_version": "0.1.0-dev",
+  "generated": "2026-10-29 14:13",
+  "thresholds_version": "2026-10-29-draft1",
+  "values": {
+    "read_pairs": "2,392,084",
+    "resources_checked": 87
+  },
+  "metrics": [
+    {
+      "name": "Sample ID format",
+      "plain": "Sample name is valid",
+      "value": "TEST_BPAL_TRIAL",
+      "unit": "",
+      "threshold": "matches ^[A-Za-z0-9_-]+$",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "R1 gzip integrity",
+      "plain": "Sequencing file 1 is complete and undamaged",
+      "value": "OK",
+      "unit": "",
+      "threshold": "decompresses fully",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "R2 gzip integrity",
+      "plain": "Sequencing file 2 is complete and undamaged",
+      "value": "OK",
+      "unit": "",
+      "threshold": "decompresses fully",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "R1/R2 read count equal",
+      "plain": "Both files contain the same number of reads",
+      "value": "2,392,084 / 2,392,084",
+      "unit": "",
+      "threshold": "R1 = R2",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Read pairs",
+      "plain": "Number of read pairs",
+      "value": 2392084,
+      "unit": "",
+      "threshold": ">= 100,000",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Reference resources unchanged",
+      "plain": "Reference databases are the approved versions",
+      "value": "87 of 87 files match",
+      "unit": "",
+      "threshold": "all match MANIFEST (size + modification time (quick))",
+      "status": "PASS",
+      "provisional": true
+    }
+  ],
+  "messages": [
+    "Read header not in Illumina format (first header: @ERR11773715.1 NB501045:318:HMTVYAFX2:1:11101:10001:17877/1); instrument, run and flow cell not available from the file.",
+    "Longest read seen in first 10,000 reads: 151 bp."
+  ],
+  "tools": [
+    {
+      "name": "input_check.py",
+      "version": "0.1.0-dev",
+      "container": "mtb-report:1.1.0",
+      "command": "input_check.py --sample_id TEST_BPAL_TRIAL --run_id TEST_RUN2 --r1 ERR11773715_1.fastq.gz --r2 ERR11773715_2.fastq.gz --resources resources/"
+    },
+    {
+      "name": "runtime",
+      "version": "Python 3.12.7",
+      "container": "mtb-report:1.1.0"
+    }
+  ],
+  "files": {
+    "inputs": [
+      {
+        "path": "ERR11773715_1.fastq.gz",
+        "checksum": "md5:d85f021a50ea95ea5d7e87f269281678"
+      },
+      {
+        "path": "ERR11773715_2.fastq.gz",
+        "checksum": "md5:f0f0b413aeff1d1fec07f3f08ad3921d"
+      }
+    ],
+    "outputs": []
+  },
+  "data": {
+    "r1": {
+      "reads": 2392084,
+      "md5": "d85f021a50ea95ea5d7e87f269281678",
+      "header": "@ERR11773715.1 NB501045:318:HMTVYAFX2:1:11101:10001:17877/1",
+      "max_len": 151,
+      "error": null
+    },
+    "r2": {
+      "reads": 2392084,
+      "md5": "f0f0b413aeff1d1fec07f3f08ad3921d",
+      "header": "@ERR11773715.1 NB501045:318:HMTVYAFX2:1:11101:10001:17877/2",
+      "max_len": 151,
+      "error": null
+    },
+    "header": null
+  }
+}

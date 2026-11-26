@@ -1,0 +1,37 @@
+title_plain: "Did we read every important gene well enough?"
+title_tech: "Step 04 - Coverage, two-tier adequacy and gene drop-out (mosdepth)"
+
+what: >
+  We count how many times each DNA letter was read ("depth"), across the whole genome and in
+  particular in the {n_genes} genes linked to drug resistance.
+
+why: >
+  A position read only a few times cannot be trusted. If a key resistance position is not read
+  well enough, we must say the result for that drug is unknown (Indeterminate) rather than guess
+  "no resistance". A gene with no reads at all may be deleted, which itself can cause resistance.
+
+result:
+  PASS: >
+    Each letter was read on average {mean_depth} times and {breadth10}% of the genome was read at
+    least 10 times. All {n_genes} resistance genes were read well enough along their whole length.
+  WARN: >
+    Each letter was read on average {mean_depth} times ({breadth10}% of the genome at least 10
+    times). {n_genes_ok} of {n_genes} resistance genes were fully covered; see the items marked
+    CHECK below.
+  FAIL: >
+    Each letter was read on average only {mean_depth} times ({breadth10}% of the genome at least 10
+    times). This is not enough for a reliable resistance result.
+
+next:
+  PASS: "No action needed. Analysis continues to variant finding (step 05)."
+  WARN: >
+    Analysis continues. Drugs whose key positions were not read well enough will be reported as
+    Indeterminate; possible gene deletions are checked in step 06.
+  FAIL: "Re-sequence the sample with more data."
+
+technical_method: >
+  mosdepth (per-base depth over the genome; region means and 1/10/50x thresholds over the 65
+  WHO-catalogue genes including their upstream catalogue span; region means over grade 1-2
+  catalogue positions). Two-tier rule: a graded position below 10x makes the drug Indeterminate;
+  10-50x means low-level (minority) resistance is not assessable. A gene with less than 95% of bases
+  at >= 1x is flagged as a possible deletion for step 06.

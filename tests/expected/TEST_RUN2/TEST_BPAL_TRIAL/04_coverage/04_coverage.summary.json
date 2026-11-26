@@ -1,0 +1,108 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "04_coverage",
+  "pipeline_version": "0.1.0-dev",
+  "values": {
+    "mean_depth": "93",
+    "breadth10": "99.0",
+    "n_genes": 70,
+    "n_genes_ok": 65,
+    "key_low": 18,
+    "dropout_genes": []
+  },
+  "metrics": [
+    {
+      "name": "Mean depth",
+      "plain": "Average number of times each DNA letter was read",
+      "value": 92.7,
+      "unit": "x",
+      "threshold": "FAIL < 20x; CHECK < 30x",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Genome at >= 10x",
+      "plain": "Share of the TB genome read well enough",
+      "value": 99.0,
+      "unit": "%",
+      "threshold": ">= 95%",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Resistance genes fully covered at >= 10x",
+      "plain": "Resistance genes read well enough along their whole length",
+      "value": "65 of 70",
+      "unit": "",
+      "threshold": "all genes",
+      "status": "WARN",
+      "provisional": true
+    },
+    {
+      "name": "Possible gene deletions",
+      "plain": "Resistance genes with missing pieces",
+      "value": "none",
+      "unit": "",
+      "threshold": "each gene >= 95% covered at >= 1x",
+      "status": "PASS",
+      "provisional": true
+    },
+    {
+      "name": "Key positions < 10x",
+      "plain": "Key resistance positions not read well enough",
+      "value": 18,
+      "unit": "",
+      "threshold": "0 (otherwise the drug is Indeterminate in step 09)",
+      "status": "WARN",
+      "provisional": true
+    },
+    {
+      "name": "Key positions 10-50x",
+      "plain": "Key positions where low-level resistance cannot be assessed",
+      "value": 192,
+      "unit": "",
+      "threshold": "reported only",
+      "status": "INFO",
+      "provisional": false
+    }
+  ],
+  "messages": [
+    "Mean depth 93x is below the 100x target: resistance present in 10-20% of bacteria may be missed. This is reported per drug, not as a failure.",
+    "Rv2477c: 99.6% of bases at >= 10x (minimum depth 5x).",
+    "Rv2983: 98.9% of bases at >= 10x (minimum depth 8x).",
+    "rpoA: 96.8% of bases at >= 10x (minimum depth 3x).",
+    "ddn: 99.8% of bases at >= 10x (minimum depth 5x).",
+    "whiB6: 100.0% of bases at >= 10x (minimum depth 0x).",
+    "Drugs with at least one key position below threshold: 10.67, 11.00, 12.67, 13.38, 8.00, 8.33, 8.50, 9.00, 9.25, 9.33, 9.50, 9.67"
+  ],
+  "tools": [
+    {
+      "name": "mosdepth",
+      "version": "0.3.14",
+      "container": "quay.io/biocontainers/mosdepth:0.3.14--h87be163_2",
+      "command": "mosdepth genome BAM; mosdepth -n --by resistance_regions.bed -T 1,10,50; mosdepth -n --by graded_positions.bed"
+    }
+  ],
+  "files": {
+    "inputs": [],
+    "outputs": [
+      {
+        "path": "data/genome.per-base.bed.gz"
+      },
+      {
+        "path": "data/genes.regions.bed.gz"
+      },
+      {
+        "path": "data/genes.thresholds.bed.gz"
+      },
+      {
+        "path": "data/key.regions.bed.gz"
+      }
+    ]
+  },
+  "status": "WARN",
+  "generated": "2026-10-29 14:16",
+  "thresholds_version": "2026-10-29-draft1"
+}

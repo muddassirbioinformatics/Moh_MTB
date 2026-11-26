@@ -1,0 +1,30 @@
+{
+  "schema": "mtb-step-summary/1",
+  "sample_id": "TEST_BPAL_TRIAL",
+  "run_id": "TEST_RUN2",
+  "step": "12_report",
+  "status": "WARN",
+  "pipeline_version": "0.1.0-dev",
+  "generated": "2026-10-29 14:18",
+  "values": {
+    "qc": "PASS with comments",
+    "category": "Pre-XDR-TB",
+    "mtb": true,
+    "detected": [
+      "RIF",
+      "INH",
+      "EMB",
+      "PZA",
+      "LFX",
+      "MFX",
+      "SM"
+    ],
+    "indeterminate": [
+      "DLM"
+    ]
+  },
+  "metrics": [],
+  "messages": [],
+  "tools": [],
+  "files": {}
+}
